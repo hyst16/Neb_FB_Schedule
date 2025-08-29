@@ -1,0 +1,235 @@
+{
+  "source_url": "https://huskers.com/sports/football/schedule",
+  "scraped_at": "2025-08-29T20:16:15.037838+00:00",
+  "games": [
+    {
+      "venue_type": "Neutral",
+      "weekday": "Thursday",
+      "date_text": "Aug 28",
+      "status": "final",
+      "result": {
+        "outcome": "W",
+        "score": "20-17"
+      },
+      "kickoff": null,
+      "divider_text": "vs.",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "Cincinnati",
+      "location": "Kansas City, Mo. / Arrowhead Stadium",
+      "tv_network_logo_url": null,
+      "links": [
+        {
+          "title": "Final Stats (PDF)",
+          "href": "https://storage.googleapis.com/huskers-com-prod/2025/08/29/18p1FjCKSR3NWN7PYTx3erPsVrvbAweMgqvI2B5N.pdf"
+        },
+        {
+          "title": "Photos",
+          "href": "https://huskers.com/news/2025/8/28/fb-vs-cincinnati-photos"
+        },
+        {
+          "title": "Postgame Notes",
+          "href": "https://storage.googleapis.com/huskers-com-prod/2025/08/29/SBXAHn7uROHHFPxqZA2Wnw2biwjukDZLNQfVK0OR.pdf"
+        },
+        {
+          "title": "Box Score",
+          "href": "https://huskers.com/boxscore/4244"
+        },
+        {
+          "title": "Recap",
+          "href": "https://huskers.com/news/2025/08/29/huskers-open-season-with-20-17-victory"
+        }
+      ]
+    },
+    {
+      "venue_type": "Home",
+      "weekday": "Saturday",
+      "date_text": "Sep 6",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "6:30 PM CDT",
+      "divider_text": "vs.",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "Akron",
+      "location": "Lincoln, Neb. / Memorial Stadium",
+      "tv_network_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "links": [
+        {
+          "title": "Opens in a new window",
+          "href": "https://www.foxsports.com/live"
+        }
+      ]
+    },
+    {
+      "venue_type": "Home",
+      "weekday": "Saturday",
+      "date_text": "Sep 13",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "11:00 AM CDT",
+      "divider_text": "vs.",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "Houston Christian",
+      "location": "Lincoln, Neb. / Memorial Stadium",
+      "tv_network_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "links": [
+        {
+          "title": "Opens in a new window",
+          "href": "https://www.foxsports.com/live"
+        }
+      ]
+    },
+    {
+      "venue_type": "Home",
+      "weekday": "Saturday",
+      "date_text": "Sep 20",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "2:30 PM CDT",
+      "divider_text": "vs.",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "Michigan",
+      "location": "Lincoln, Neb. / Memorial Stadium",
+      "tv_network_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "links": [
+        {
+          "title": "Opens in a new window",
+          "href": "https://www.cbs.com/"
+        }
+      ]
+    },
+    {
+      "venue_type": "Home",
+      "weekday": "Saturday",
+      "date_text": "Oct 4",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "TBA",
+      "divider_text": "vs.",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "Michigan State",
+      "location": "Lincoln, Neb. / Memorial Stadium",
+      "tv_network_logo_url": null,
+      "links": []
+    },
+    {
+      "venue_type": "Away",
+      "weekday": "Saturday",
+      "date_text": "Oct 11",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "TBA",
+      "divider_text": "at",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "Maryland",
+      "location": "College Park, Md.",
+      "tv_network_logo_url": null,
+      "links": []
+    },
+    {
+      "venue_type": "Away",
+      "weekday": "Friday",
+      "date_text": "Oct 17",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "7:00 PM CDT",
+      "divider_text": "at",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "Minnesota",
+      "location": "Minneapolis, Minn.",
+      "tv_network_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "links": [
+        {
+          "title": "Opens in a new window",
+          "href": "https://www.foxsports.com/live"
+        }
+      ]
+    },
+    {
+      "venue_type": "Home",
+      "weekday": "Saturday",
+      "date_text": "Oct 25",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "TBA",
+      "divider_text": "vs.",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "Northwestern",
+      "location": "Lincoln, Neb. / Memorial Stadium",
+      "tv_network_logo_url": null,
+      "links": []
+    },
+    {
+      "venue_type": "Home",
+      "weekday": "Saturday",
+      "date_text": "Nov 1",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "TBA",
+      "divider_text": "vs.",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "USC",
+      "location": "Lincoln, Neb. / Memorial Stadium",
+      "tv_network_logo_url": null,
+      "links": []
+    },
+    {
+      "venue_type": "Away",
+      "weekday": "Saturday",
+      "date_text": "Nov 8",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "TBA",
+      "divider_text": "at",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "UCLA",
+      "location": "Pasadena, Calif.",
+      "tv_network_logo_url": null,
+      "links": []
+    },
+    {
+      "venue_type": "Away",
+      "weekday": "Saturday",
+      "date_text": "Nov 22",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "TBA",
+      "divider_text": "at",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "Penn State",
+      "location": "University Park, Pa.",
+      "tv_network_logo_url": null,
+      "links": []
+    },
+    {
+      "venue_type": "Home",
+      "weekday": "Friday",
+      "date_text": "Nov 28",
+      "status": "upcoming",
+      "result": null,
+      "kickoff": "11:00 AM CST",
+      "divider_text": "vs.",
+      "nebraska_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "opponent_name": "Iowa",
+      "location": "Lincoln, Neb. / Memorial Stadium",
+      "tv_network_logo_url": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "links": [
+        {
+          "title": "Opens in a new window",
+          "href": "https://bigten.org/fb/article/blt8eb3dde899ebe558/"
+        }
+      ]
+    }
+  ]
+}

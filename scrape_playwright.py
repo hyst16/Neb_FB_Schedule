@@ -9,108 +9,108 @@ SOURCE_URL = "https://huskers.com/sports/football/schedule"
 OUT = Path("data/huskers_schedule.json")
 OUT.parent.mkdir(parents=True, exist_ok=True)
 
+# -------- Helpers --------
+
 def clean(s):
     return " ".join(s.split()) if isinstance(s, str) else s
 
-def safe_text(el):
-    return el.inner_text().strip() if el else None
-
-def safe_attr(el, name):
-    return el.get_attribute(name) if el else None
-
-def get_img_src(el):
-    """Return best-available image URL after lazy-load."""
-    if not el:
+def safe_text(locator, timeout=1000):
+    """Return innerText of the FIRST match, or None if no match."""
+    try:
+        if not locator or locator.count() == 0:
+            return None
+        return locator.first.inner_text(timeout=timeout).strip()
+    except PWTimeout:
         return None
-    # Try currentSrc (covers <picture> and responsive srcset)
-    current = el.evaluate("img => img.currentSrc || img.src || img.getAttribute('data-src') || ''")
-    if current and not current.startswith("data:image"):
-        return current
-    # Fallbacks
-    src = safe_attr(el, "src")
-    if src and not src.startswith("data:image"):
-        return src
-    data_src = safe_attr(el, "data-src")
-    if data_src and not data_src.startswith("data:image"):
-        return data_src
+
+def safe_attr(locator, name, timeout=1000):
+    """Return attribute of the FIRST match, or None if no match."""
+    try:
+        if not locator or locator.count() == 0:
+            return None
+        return locator.first.get_attribute(name, timeout=timeout)
+    except PWTimeout:
+        return None
+
+def get_img_src(locator):
+    """Return best-available image URL after lazy-load, or None."""
+    if not locator or locator.count() == 0:
+        return None
+    img = locator.first
+    try:
+        # prefer currentSrc since they may use srcset/picture
+        current = img.evaluate("(el) => el.currentSrc || el.src || el.getAttribute('data-src') || ''")
+        if current and not current.startswith("data:image"):
+            return current
+        src = safe_attr(locator, "src")
+        if src and not src.startswith("data:image"):
+            return src
+        data_src = safe_attr(locator, "data-src")
+        if data_src and not data_src.startswith("data:image"):
+            return data_src
+    except PWTimeout:
+        pass
     return None
 
-def parse_event(event):
-    # Venue type
-    venue_type = safe_text(event.locator(".schedule-event-venue__type-label").first)
+# -------- Per-event parsing --------
 
-    # Date bits
-    weekday = safe_text(event.locator(".schedule-event-date__time time").first)
-    date_text = safe_text(event.locator(".schedule-event-date__label").first)
+def parse_event(event):
+    # Venue, date
+    venue_type = safe_text(event.locator(".schedule-event-venue__type-label"))
+    weekday = safe_text(event.locator(".schedule-event-date__time time"))
+    date_text = safe_text(event.locator(".schedule-event-date__label"))
 
     # Result / kickoff
     status = "tbd"
     result = None
     kickoff = None
 
-    has_win = event.locator(".schedule-event-item-result__win")
-    has_loss = event.locator(".schedule-event-item-result__loss")
-    has_tie = event.locator(".schedule-event-item-result__tie")
+    has_win = event.locator(".schedule-event-item-result__win").count() > 0
+    has_loss = event.locator(".schedule-event-item-result__loss").count() > 0
+    has_tie = event.locator(".schedule-event-item-result__tie").count() > 0
 
-    if has_win.count() or has_loss.count() or has_tie.count():
+    if has_win or has_loss or has_tie:
         status = "final"
-        outcome = "W" if has_win.count() else "L" if has_loss.count() else "T"
-        label_el = event.locator(".schedule-event-item-result__label").first
-        label_text = safe_text(label_el) or ""
-        # Common form: "W 20-17"
+        outcome = "W" if has_win else "L" if has_loss else "T"
+        label_text = safe_text(event.locator(".schedule-event-item-result__label")) or ""
         parts = label_text.split()
         score = next((p for p in parts if "-" in p), label_text)
         result = {"outcome": outcome, "score": score}
     else:
-        kickoff_el = event.locator(".schedule-event-item-result__label").first
-        kt = safe_text(kickoff_el)
-        if kt:
+        kickoff_text = safe_text(event.locator(".schedule-event-item-result__label"))
+        if kickoff_text:
             status = "upcoming"
-            kickoff = kt
+            kickoff = kickoff_text
 
-    # Teams / images
-    # Scroll into view to trigger lazy-load
+    # Make sure the event is in view to trigger lazy-loaded images
     try:
         event.scroll_into_view_if_needed(timeout=2000)
     except PWTimeout:
         pass
 
-    img_wrappers = event.locator(".schedule-event-item-default__images .schedule-event-item-default__image-wrapper")
+    # Logos
+    wrappers = event.locator(".schedule-event-item-default__images .schedule-event-item-default__image-wrapper")
     nebraska_logo_url = opponent_logo_url = None
+    if wrappers.count() >= 1:
+        nebraska_logo_url = get_img_src(wrappers.nth(0).locator("img"))
+    if wrappers.count() >= 2:
+        opponent_logo_url = get_img_src(wrappers.nth(1).locator("img"))
 
-    count = img_wrappers.count()
-    if count >= 1:
-        husker_img = img_wrappers.nth(0).locator("img").first
-        # wait a tick for lazy load
-        try:
-            husker_img.wait_for(state="attached", timeout=2000)
-        except PWTimeout:
-            pass
-        nebraska_logo_url = get_img_src(husker_img)
-    if count >= 2:
-        opp_img = img_wrappers.nth(1).locator("img").first
-        try:
-            opp_img.wait_for(state="attached", timeout=2000)
-        except PWTimeout:
-            pass
-        opponent_logo_url = get_img_src(opp_img)
+    divider_text = safe_text(event.locator(".schedule-event-item-default__divider"))
+    opponent_name = safe_text(event.locator(".schedule-event-item-default__opponent-name"))
 
-    divider_text = safe_text(event.locator(".schedule-event-item-default__divider").first)
-    opponent_name = safe_text(event.locator(".schedule-event-item-default__opponent-name").first)
+    location = clean(safe_text(event.locator(".schedule-event-item-default__location .schedule-event-location")))
 
-    loc_span = event.locator(".schedule-event-item-default__location .schedule-event-location").first
-    location = clean(safe_text(loc_span)) if loc_span else None
+    # TV logo (first image inside the bottom links)
+    tv_logo = event.locator(".schedule-event-bottom__link img, .schedule-event-item-links__image")
+    tv_network_logo_url = get_img_src(tv_logo) if tv_logo.count() > 0 else None
 
-    # TV network logo (first image in the bottom links area)
-    tv_img = event.locator(".schedule-event-bottom__link img, .schedule-event-item-links__image").first
-    tv_network_logo_url = get_img_src(tv_img) if tv_img.count() else None
-
-    # Collect bottom links
+    # Links (Box Score, Recap, Photos, PDFs…)
     links = []
-    for i in range(event.locator(".schedule-event-bottom__link").count()):
-        a = event.locator(".schedule-event-bottom__link").nth(i)
-        title_node = a.locator(".schedule-event-item-links__title").first
-        title = safe_text(title_node) or clean(safe_text(a))
+    link_nodes = event.locator(".schedule-event-bottom__link")
+    for i in range(link_nodes.count()):
+        a = link_nodes.nth(i)
+        title = safe_text(a.locator(".schedule-event-item-links__title")) or clean(safe_text(a))
         href = safe_attr(a, "href")
         if href:
             if href.startswith("/"):
@@ -133,30 +133,30 @@ def parse_event(event):
         "links": links,
     }
 
+# -------- Main scrape --------
+
 def scrape_with_playwright():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         ctx = browser.new_context(
             user_agent="huskers-schedule-scraper/1.0 (+https://example.com)",
-            viewport={"width": 1400, "height": 2000},
+            viewport={"width": 1400, "height": 2400},
         )
         page = ctx.new_page()
-        page.goto(SOURCE_URL, wait_until="domcontentloaded")
-        # Let lazy scripts settle; then we’ll scroll the whole page to wake every image.
-        page.wait_for_timeout(500)
+        page.goto(SOURCE_URL, wait_until="networkidle")  # wait for network to settle
+        page.wait_for_timeout(400)  # micro settle
 
-        # Scroll through all events to trigger lazy loading
+        # Scroll every event into view to trigger lazy loading
         events = page.locator(".schedule-event-item")
-        n = events.count()
-        for i in range(n):
+        for i in range(events.count()):
             ev = events.nth(i)
             try:
                 ev.scroll_into_view_if_needed(timeout=2000)
             except PWTimeout:
                 pass
-            page.wait_for_timeout(120)  # brief yield for image swap
+            page.wait_for_timeout(120)
 
-        # Re-query after scrolling (DOM can update)
+        # Parse
         events = page.locator(".schedule-event-item")
         games = [parse_event(events.nth(i)) for i in range(events.count())]
 

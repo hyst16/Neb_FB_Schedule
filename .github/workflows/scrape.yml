@@ -31,14 +31,17 @@ jobs:
 
       - name: Run scraper (Playwright)
         run: python scrape_playwright.py
+      
+      - name: Build stadium manifest
+        run: python build_stadium_manifest.py
 
-      - name: Commit JSON if changed
+      - name: Commit JSON and manifest if changed
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/huskers_schedule.json
-            git commit -m "chore: update schedule JSON (Playwright)"
+            git add data/current.json data/stadium_manifest.json STADIUMS.md
+            git commit -m "update: schedule + stadium manifest"
             git push
           else
             echo "No changes to commit."
